@@ -1,4 +1,3 @@
-import 'vue-googlemaps/dist/vue-googlemaps.css'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import Vue from 'vue'
 

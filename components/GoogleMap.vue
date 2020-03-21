@@ -1,12 +1,12 @@
 <template>
   <div>
     <div>
-      <h2>Search and add a pin</h2>
+      <slot />
       <label>
         <gmap-autocomplete
           @place_changed="setPlace"
         />
-        <button @click="addMarker">Add</button>
+        <v-btn @click="addMarker">Add</v-btn>
       </label>
       <br>
     </div>
