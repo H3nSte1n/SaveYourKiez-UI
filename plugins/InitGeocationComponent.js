@@ -1,10 +1,24 @@
 import 'vue-googlemaps/dist/vue-googlemaps.css'
-import VueGoogleMaps from 'vue-googlemaps'
+import * as VueGoogleMaps from 'vue2-google-maps'
 import Vue from 'vue'
 
-Vue.use(VueGoogleMaps, {
-  load: {
-    apiKey: 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyA7t2TU7SjGRFr6lkdONM3zJQZPBbYMS1s',
-    libraries: ['places']
-  }
-})
+export default () => {
+  Vue.use(VueGoogleMaps, {
+    load: {
+      key: 'AIzaSyA7t2TU7SjGRFr6lkdONM3zJQZPBbYMS1s',
+      libraries: 'places' // This is required if you use the Autocomplete plugin
+      // OR: libraries: 'places,drawing'
+      // OR: libraries: 'places,drawing,visualization'
+      // (as you require)
+      // If you want to set the version, you can do so:
+      // v: '3.26',
+    },
+    // autobindAllEvents: false,
+    // If you want to manually install components, e.g.
+    // import {GmapMarker} from 'vue2-google-maps/src/components/marker'
+    // Vue.component('GmapMarker', GmapMarker)
+    // then set installComponents to 'false'.
+    // If you want to automatically install all the components this property must be set to 'true':
+    installComponents: true
+  })
+}

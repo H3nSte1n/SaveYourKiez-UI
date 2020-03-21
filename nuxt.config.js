@@ -40,7 +40,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vuex-persist', ssr: false }
+    { src: '~/plugins/vuex-persist', ssr: false },
+    { src: '~/plugins/InitGeocationComponent', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -83,6 +84,7 @@ export default {
   ** Build configuration
   */
   build: {
+    transpile: [/^vue2-google-maps($|\/)/],
     /*
     ** You can extend webpack config here
     */

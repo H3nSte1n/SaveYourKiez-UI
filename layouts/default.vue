@@ -26,6 +26,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Split Screen',
           to: '/splitScreen'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Map Test',
+          to: '/mapTest'
         }
       ],
       miniVariant: false,
