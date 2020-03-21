@@ -6,7 +6,7 @@
       max="100000"
       label="Maximale Distanz"
       :thumb-size="48"
-      thumb-label="true"
+      :thumb-label="true"
     >
       <template v-slot:thumb-label="{ value }">
         {{ Math.round(value / 1000) }}km
