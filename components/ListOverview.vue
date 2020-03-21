@@ -3,7 +3,7 @@
     <v-slider
       v-model="maxDistance"
       min="0"
-      max="100000"
+      max="50000"
       label="Maximale Distanz"
       :thumb-size="48"
       :thumb-label="true"
@@ -14,8 +14,8 @@
     </v-slider>
     <v-row justify="space-around">
       <v-checkbox
-        v-for="cat in categories"
-        :key="cat"
+        v-for="(cat, index) in categories"
+        :key="index"
         v-model="filterCategories"
         :label="cat"
         :value="cat"
@@ -41,70 +41,18 @@ export default {
   data () {
     return {
       maxDistance: 15000,
-      categories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur'],
-      filterCategories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur'],
-      companys: [
-        {
-          id: 1,
-          headline: 'Cafe123',
-          category: 'Bar',
-          coordinates: {
-            latitude: 50.751802,
-            longitude: 7.090266
-          }
-        },
-        {
-          id: 9,
-          headline: 'Schnittchen',
-          category: 'Friseur',
-          coordinates: {
-            latitude: 50.7413,
-            longitude: 7.090226
-          }
-        },
-        {
-          id: 8,
-          headline: 'Café Frida',
-          category: 'Café',
-          coordinates: {
-            latitude: 50.7413,
-            longitude: 7.020226
-          }
-        },
-        {
-          id: 4,
-          headline: 'Kio',
-          category: 'Kiosk',
-          coordinates: {
-            latitude: 50.151802,
-            longitude: 7.00266
-          }
-        },
-        {
-          id: 2,
-          headline: 'Frittebud',
-          category: 'Food',
-          coordinates: {
-            latitude: 50.651802,
-            longitude: 6.990266
-          }
-        },
-        {
-          id: 3,
-          headline: 'Vapiano',
-          category: 'Food',
-          coordinates: {
-            latitude: 50.751805,
-            longitude: 7.123296
-          }
-        }
-      ]
+      // categories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur'],
+      filterCategories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur']
     }
   },
   computed: {
+    categories () {
+      const mappedCategories = this.$store.state.companies.map(c => c.category)
+      return [...new Set(mappedCategories)]
+    },
     companysWithDistance () {
       const companysWithDistance = []
-      this.companys.forEach((el) => {
+      this.$store.state.companies.forEach((el) => {
         companysWithDistance.push({
           ...el,
           distance: this.distance(el.coordinates)
