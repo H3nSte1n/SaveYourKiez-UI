@@ -32,12 +32,15 @@ export default {
     }
   },
   mounted () {
-    if (!this.$store.state.location.coords) { getPosition(this.saveToStore) }
+    if (!this.$store.state.location.coords) {
+      this.$store.dispatch('setLoading', true)
+      getPosition(this.saveToStore)
+    }
   },
   methods: {
     saveToStore (pos) {
-      this.$store.commit('setLocation', pos)
-      console.log(this.$store.state.location)
+      this.$store.dispatch('setLocation', pos)
+      this.$store.dispatch('setLoading', false)
     }
   }
 }
