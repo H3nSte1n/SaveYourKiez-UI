@@ -12,6 +12,15 @@
         {{ Math.round(value / 1000) }}km
       </template>
     </v-slider>
+    <v-row justify="space-around">
+      <v-checkbox
+        v-for="cat in categories"
+        :key="cat"
+        v-model="filterCategories"
+        :label="cat"
+        :value="cat"
+      />
+    </v-row>
     <ListElement
       v-for="company in sortedCompanys"
       :key="company.id"
@@ -32,6 +41,8 @@ export default {
   data () {
     return {
       maxDistance: 15000,
+      categories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur'],
+      filterCategories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur'],
       companys: [
         {
           id: 1,
@@ -40,6 +51,24 @@ export default {
           coordinates: {
             latitude: 50.751802,
             longitude: 7.090266
+          }
+        },
+        {
+          id: 9,
+          headline: 'Schnittchen',
+          category: 'Friseur',
+          coordinates: {
+            latitude: 50.7413,
+            longitude: 7.090226
+          }
+        },
+        {
+          id: 8,
+          headline: 'Café Frida',
+          category: 'Café',
+          coordinates: {
+            latitude: 50.7413,
+            longitude: 7.020226
           }
         },
         {
@@ -54,7 +83,7 @@ export default {
         {
           id: 2,
           headline: 'Frittebud',
-          category: 'Restaurant',
+          category: 'Food',
           coordinates: {
             latitude: 50.651802,
             longitude: 6.990266
@@ -63,7 +92,7 @@ export default {
         {
           id: 3,
           headline: 'Vapiano',
-          category: 'Restaurant',
+          category: 'Food',
           coordinates: {
             latitude: 50.751805,
             longitude: 7.123296
@@ -82,7 +111,8 @@ export default {
         })
       })
       return companysWithDistance.filter((el) => {
-        return el.distance < this.maxDistance
+        return el.distance < this.maxDistance &&
+          this.filterCategories.includes(el.category)
       })
     },
     sortedCompanys () {
