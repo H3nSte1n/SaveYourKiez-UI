@@ -2,17 +2,17 @@
   <v-flex xs12>
     <v-card color="teal" class="white--text">
       <v-layout>
-        <v-flex xs5 sm3 md2>
+        <v-flex xs5 sm3 lg2>
           <v-img
             :src="image"
             contain
           />
         </v-flex>
-        <v-flex xs9 sm9 md10 class="justify-center">
+        <v-flex xs7 sm9 lg10 class="justify-center">
           <v-card-title primary-title>
             <v-flex xs12>
               <div class="text-right body-2 font-weight-bold">
-                {{ distance }}
+                {{ distanceWithUnit }}
               </div>
               <div class="text-left body-2">
                 {{ category }}
@@ -49,12 +49,17 @@ export default {
       default: 'Restaurant'
     },
     distance: {
-      type: String,
-      default: '200m'
+      type: Number,
+      default: 0
     },
     link: {
       type: String,
       default: '/'
+    }
+  },
+  computed: {
+    distanceWithUnit () {
+      return this.distance > 999 ? `${this.distance / 1000}km` : `${this.distance}m`
     }
   }
 }
