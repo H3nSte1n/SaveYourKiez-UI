@@ -102,6 +102,7 @@ export default {
   methods: {
     saveToStore (pos) {
       this.$store.commit('setLocation', pos)
+      console.log(this.$store.state.location)
     }
   }
 }
