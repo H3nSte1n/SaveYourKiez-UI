@@ -2,16 +2,16 @@
   <v-flex xs12>
     <v-card color="teal lighten-2" class="white--text">
       <v-layout>
-        <v-flex xs4 sm3 md2>
+        <v-flex xs5 sm3 md2>
           <v-img
             :src="image"
             contain
           />
         </v-flex>
-        <v-flex xs8 sm9 md10>
+        <v-flex xs9 sm9 md10 class="justify-center">
           <v-card-title primary-title>
             <v-flex xs12>
-              <div class="text-right body-1 font-weight-bold">
+              <div class="text-right body-2 font-weight-bold">
                 {{ distance }}
               </div>
               <div class="text-left body-2">
@@ -21,7 +21,7 @@
                 {{ headline }}
               </div>
               <div class="text-left pt-2 ">
-                <v-btn small flat light>
+                <v-btn nuxt :to="link" small flat light>
                   Jetzt supporten
                 </v-btn>
               </div>
@@ -42,7 +42,7 @@ export default {
     },
     headline: {
       type: String,
-      default: 'Bonner Frittebud'
+      default: 'Frittebud'
     },
     category: {
       type: String,
@@ -51,6 +51,10 @@ export default {
     distance: {
       type: String,
       default: '200m'
+    },
+    link: {
+      type: String,
+      default: '/'
     }
   }
 }
