@@ -85,9 +85,11 @@
 
 <script>
 import getPosition from '~/plugins/geolocation'
+import ListElement from '~/components/ListElement'
 
 export default {
   components: {
+    ListElement
   },
   computed: {
     location () {
