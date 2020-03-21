@@ -15,6 +15,9 @@
       </div>
       <ListOverview />
     </v-flex>
+    <v-overlay :value="loading">
+      <v-progress-circular indeterminate size="64" />
+    </v-overlay>
   </v-layout>
 </template>
 
@@ -29,6 +32,9 @@ export default {
   computed: {
     location () {
       return this.$store.state.location
+    },
+    loading () {
+      return this.$store.state.loading
     }
   },
   mounted () {

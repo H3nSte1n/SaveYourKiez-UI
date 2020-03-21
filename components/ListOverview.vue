@@ -20,9 +20,6 @@
       :category="company.category"
       :distance="company.distance"
     />
-    <v-overlay :value="loading">
-      <v-progress-circular indeterminate size="64" />
-    </v-overlay>
   </div>
 </template>
 
@@ -76,9 +73,6 @@ export default {
     }
   },
   computed: {
-    loading () {
-      return this.$store.state.loading
-    },
     companysWithDistance () {
       const companysWithDistance = []
       this.companys.forEach((el) => {
