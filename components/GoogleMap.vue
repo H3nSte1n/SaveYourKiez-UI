@@ -3,11 +3,20 @@
     <div>
       <slot />
       <label>
-        <gmap-autocomplete
-          @place_changed="setPlace"
-        />
-        <v-btn @click="addMarker">Add</v-btn>
-      </label>
+        <gmap-autocomplete>
+          <template v-slot:input="slotProps">
+            <v-text-field
+              ref="input"
+              outlined
+              prepend-inner-icon="place"
+              placeholder="Location Of Event"
+              @listeners="slotProps.listeners"
+              @attrs="slotProps.attrs"
+              @place_changed="setPlace"
+            />
+          </template>
+          <v-btn @click="addMarker">Add</v-btn>
+        </gmap-autocomplete></label>
       <br>
     </div>
     <br>

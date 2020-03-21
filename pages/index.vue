@@ -85,19 +85,9 @@
 
 <script>
 import getPosition from '~/plugins/geolocation'
-<<<<<<< HEAD
 
 export default {
   components: {
-=======
-import Logo from '~/components/Logo.vue'
-import ListElement from '~/components/ListElement.vue'
-
-export default {
-  components: {
-    Logo,
-    ListElement
->>>>>>> 5131c69f94bd9ba2d6161602dc6a2991432a4249
   },
   computed: {
     location () {
