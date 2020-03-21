@@ -1,7 +1,17 @@
+import path from 'path'
+import fs from 'fs'
 import colors from 'vuetify/es5/util/colors'
 
 export default {
   mode: 'universal',
+
+  server: {
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'cert.pem'))
+    },
+    host: '0.0.0.0'
+  },
   /*
   ** Headers of the page
   */
@@ -30,6 +40,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/vuex-persist', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
