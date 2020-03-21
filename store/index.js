@@ -6,6 +6,7 @@ export const state = () => ({
       id: 1,
       headline: 'Cafe123',
       category: 'Bar',
+      key: 'test',
       coordinates: {
         latitude: 50.751802,
         longitude: 7.090266

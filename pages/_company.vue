@@ -7,7 +7,8 @@
       sm10
       md8
     >
-      <div class="text-center">Test
+      <div class="text-center">
+        {{ company.headline }}
       </div>
     </v-flex>
   </v-layout>
@@ -16,13 +17,16 @@
 <script>
 
 export default {
+  validate ({ params, store }) {
+    const { companies } = store.state
+    return companies.find(el => el.key === params.company)
+  },
   components: {
   },
   computed: {
-  },
-  mounted () {
-  },
-  methods: {
+    company () {
+      return this.$store.state.companies.find(el => el.key === this.$route.params.company)
+    }
   }
 }
 </script>
