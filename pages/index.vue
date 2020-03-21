@@ -15,7 +15,7 @@
           <p>Breitengrad: {{ location.coords.latitude }}</p>
           <p>Längengrad: {{ location.coords.longitude }}</p>
         </div>
-        <vuetify-logo />
+        <ListElement />
       </div>
       <v-card>
         <v-card-title class="headline">
@@ -86,12 +86,12 @@
 <script>
 import getPosition from '~/plugins/geolocation'
 import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import ListElement from '~/components/ListElement.vue'
 
 export default {
   components: {
     Logo,
-    VuetifyLogo
+    ListElement
   },
   computed: {
     location () {
@@ -99,7 +99,7 @@ export default {
     }
   },
   mounted () {
-    getPosition(this.saveToStore)
+    if (!this.$store.state.location.coords) { getPosition(this.saveToStore) }
   },
   methods: {
     saveToStore (pos) {
