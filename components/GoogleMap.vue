@@ -2,21 +2,21 @@
   <div>
     <div>
       <slot />
-      <label>
-        <gmap-autocomplete>
-          <template v-slot:input="slotProps">
-            <v-text-field
-              ref="input"
-              outlined
-              prepend-inner-icon="place"
-              placeholder="Location Of Event"
-              @listeners="slotProps.listeners"
-              @attrs="slotProps.attrs"
-              @place_changed="setPlace"
-            />
-          </template>
-          <v-btn @click="addMarker">Add</v-btn>
-        </gmap-autocomplete></label>
+      <gmap-autocomplete @place_changed="setPlace">
+        <template v-slot:input="slotProps">
+          <v-text-field
+            ref="input"
+            outlined
+            prepend-inner-icon="place"
+            placeholder="Location Of Event"
+            @listeners="slotProps.listeners"
+            @attrs="slotProps.attrs"
+          />
+        </template>
+      </gmap-autocomplete>
+      <v-btn @click="updatePosition">
+        Add
+      </v-btn>
       <br>
     </div>
     <br>
@@ -24,12 +24,26 @@
       :center="center"
       :zoom="12"
       style="width:100%;  height: 400px;"
+      :options="{
+        zoomControl: true,
+        mapTypeControl: true,
+        scaleControl: true,
+        streetViewControl: false,
+        rotateControl: true,
+        fullscreenControl: true,
+        disableDefaultUi: false
+      }"
     >
+      <gmap-info-window :options="infoWindow.infoOptions" :position="infoWindow.infoWindowPosition" :opened="infoWindow.infoWindowOpenStatus" @closeclick="infoWindow.infoWindowOpenStatus=false">
+        {{ "Hello World" }}
+      </gmap-info-window>
       <gmap-marker
-        v-for="(m, index) in markers"
+        v-for="(marker, index) in markers"
         :key="index"
-        :position="m.position"
-        @click="center=m.position"
+        :position="marker.position"
+        :icon="marker.icon"
+        :clickable="true"
+        @click="toggleInfoWindow(marker,index)"
       />
     </gmap-map>
   </div>
@@ -38,45 +52,98 @@
 <script>
 export default {
   name: 'GoogleMap',
+  props: {
+    locations: {
+      type: Array,
+      default: () => [] // array with objects
+    },
+    companyInfos: {
+      type: Array,
+      default: () => []
+    }
+  },
   data () {
     return {
       // default to Montreal to keep it simple
       // change this to whatever makes sense
-      center: { lat: 45.508, lng: -73.587 },
-      markers: [],
+      center: { lat: -33.91747, lng: 151.22912 },
       places: [],
-      currentPlace: null
+      currentPlace: null,
+      infoWindow: {
+        infoOptions: {
+          pixelOffset: {
+            width: 0,
+            height: -35
+          }
+        },
+        infoWindowPosition: null,
+        infoWindowOpenStatus: false
+      },
+      icons: {
+        kiosk: {
+          icon: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png'
+        },
+        bar: {
+          icon: 'library_maps.png'
+        },
+        supermarket: {
+          icon: 'info-i_maps.png'
+        },
+        bookmarket: {
+          icon: 'info-i_maps.png'
+        }
+      }
     }
   },
-
-  mounted () {
-    this.geolocate()
+  computed: {
+    location () {
+      return this.$store.state.location
+    },
+    markers () {
+      const markerArray = []
+      this.locations.forEach((e) => {
+        markerArray.push({
+          position: e.position,
+          icon: this.icons[e.type].icon
+        })
+      })
+      return markerArray
+    }
   },
-
+  mounted () {
+    // this.geolocate()
+  },
   methods: {
-    // receives a place object via the autocomplete component
     setPlace (place) {
       this.currentPlace = place
     },
-    addMarker () {
+    updatePosition () {
       if (this.currentPlace) {
-        const marker = {
+        this.currentPlace = null
+        const currentPosition = {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
         }
-        this.markers.push({ position: marker })
-        this.places.push(this.currentPlace)
-        this.center = marker
-        this.currentPlace = null
+        this.center = currentPosition
       }
     },
     geolocate () {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
-      })
+      this.center = {
+        lat: this.location.coords.latitude,
+        lng: this.location.coords.longitude
+      }
+    },
+    toggleInfoWindow (marker, i) {
+      console.log('test')
+      this.infoWindow.infoWindowPosition = marker.position
+      let index = null
+
+      if (index === i) {
+        this.infoWindow.infoWindowOpenStatus = !this.infoWindow.infoWindowOpenStatus
+      } else {
+        this.infoWindow.infoWindowOpenStatus = true
+        index = i
+      }
     }
   }
 }
