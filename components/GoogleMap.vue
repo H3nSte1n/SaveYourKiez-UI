@@ -2,7 +2,7 @@
   <div>
     <div>
       <slot />
-      <gmap-autocomplete @place_changed="setPlace">
+      <gmap-autocomplete @place_changed="setPlace" class="test">
         <template v-slot:input="slotProps">
           <v-text-field
             ref="input"
@@ -14,12 +14,7 @@
           />
         </template>
       </gmap-autocomplete>
-      <v-btn @click="updatePosition">
-        Add
-      </v-btn>
-      <br>
     </div>
-    <br>
     <gmap-map
       :center="center"
       :zoom="12"
@@ -35,7 +30,7 @@
       }"
     >
       <gmap-info-window :options="infoWindow.infoOptions" :position="infoWindow.infoWindowPosition" :opened="infoWindow.infoWindowOpenStatus" @closeclick="infoWindow.infoWindowOpenStatus=false">
-        {{ "Hello World" }}
+        <geo-info-box v-if="currentIndex != null" :company-infos="companyInfos" :current-index="currentIndex" />
       </gmap-info-window>
       <gmap-marker
         v-for="(marker, index) in markers"
@@ -50,8 +45,13 @@
 </template>
 
 <script>
+import GeoInfoBox from './GeoInfobox'
+
 export default {
   name: 'GoogleMap',
+  components: {
+    GeoInfoBox
+  },
   props: {
     locations: {
       type: Array,
@@ -59,7 +59,7 @@ export default {
     },
     companyInfos: {
       type: Array,
-      default: () => []
+      default: () => [] // companyName, companyDesc, img, button
     }
   },
   data () {
@@ -79,6 +79,7 @@ export default {
         infoWindowPosition: null,
         infoWindowOpenStatus: false
       },
+      currentIndex: null,
       icons: {
         kiosk: {
           icon: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png'
@@ -136,15 +137,26 @@ export default {
     toggleInfoWindow (marker, i) {
       console.log('test')
       this.infoWindow.infoWindowPosition = marker.position
-      let index = null
 
-      if (index === i) {
+      if (this.currentIndex === i) {
         this.infoWindow.infoWindowOpenStatus = !this.infoWindow.infoWindowOpenStatus
       } else {
         this.infoWindow.infoWindowOpenStatus = true
-        index = i
+        this.currentIndex = i
       }
+      console.log(this.currentIndex)
     }
   }
 }
 </script>
+
+<style scoped class="scss">
+.test {
+  width: 100%;
+  text-align: center;
+  max-width: 600px;
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+}
+
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Map :locations="features"/>
+    <Map :locations="features" :company-infos="companyInfos" />
   </div>
 </template>
 
@@ -20,6 +20,18 @@ export default {
         }, {
           position: { lat: -33.91539, lng: 151.22820 },
           type: 'kiosk'
+        }
+      ],
+      companyInfos: [
+        {
+          name: 'Name',
+          desc: 'asdjajksdnjk ankjdn ajksldklasjn djkasn jkdans kjdn kajsn dklasn dklnas kldna kslnd klasn kldnas klnd klasn dklnsa kldnska lnd klasn dklanskl dnklas ndkln skl',
+          link: '/'
+        },
+        {
+          name: 'Name 123123',
+          desc: 'asdjajksdnjk ankjdn ajksldklasjn djkasn jkdans kjdn kajsn dklasn dklnas kldna kslnd klasn kldnas klnd klasn dklnsa kldnska lnd klasn dklanskl dnklas ndkln skl',
+          link: '/'
         }
       ]
     }
