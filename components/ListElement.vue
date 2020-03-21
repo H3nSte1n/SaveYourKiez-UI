@@ -1,6 +1,6 @@
 <template>
   <v-flex xs12>
-    <v-card color="teal lighten-2" class="white--text">
+    <v-card color="teal" class="white--text">
       <v-layout>
         <v-flex xs5 sm3 md2>
           <v-img
@@ -21,7 +21,7 @@
                 {{ headline }}
               </div>
               <div class="text-left pt-2 ">
-                <v-btn nuxt :to="link" small flat light>
+                <v-btn nuxt text :to="link" small dark>
                   Jetzt supporten
                 </v-btn>
               </div>
