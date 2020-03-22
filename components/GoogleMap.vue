@@ -59,7 +59,8 @@ export default {
         kiosk: require('~/assets/kiosk-active.png'),
         cafe: require('~/assets/cafe-active.png'),
         food: require('~/assets/food-active.png'),
-        coiffeur: require('~/assets/barber-active.png')
+        coiffeur: require('~/assets/barber-active.png'),
+        shop: require('~/assets/shop-active.png')
       }
     }
   },
