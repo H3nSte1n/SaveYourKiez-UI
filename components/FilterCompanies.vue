@@ -51,6 +51,7 @@ export default {
   watch: {
     maxDistance () {
       this.$store.dispatch('setMaxDistance', this.maxDistance)
+      console.log(this.$store.state.maxDistance)
       this.$store.dispatch('setLoading', false)
     }
   },

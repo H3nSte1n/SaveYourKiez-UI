@@ -25,7 +25,8 @@ export default {
   },
   computed: {
     maxDistance () {
-      return this.$store.maxDistance
+      console.log(this.$store.state.maxDistance)
+      return this.$store.state.maxDistance
     },
     companysWithDistance () {
       const companysWithDistance = []

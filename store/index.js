@@ -68,7 +68,7 @@ export const mutations = {
     state.loading = payload
   },
   setMaxDistance (state, payload) {
-    state.loading = payload
+    state.maxDistance = payload
   }
 }
 
