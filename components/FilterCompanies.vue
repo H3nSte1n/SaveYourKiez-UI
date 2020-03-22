@@ -1,6 +1,6 @@
 <template>
   <div>
-    <gmap-autocomplete @place_changed="setPlace">
+    <gmap-autocomplete @place_changed="setPlace" class="locationSelection">
       <template v-slot:input="slotProps">
         <v-text-field
           ref="input"
@@ -63,8 +63,24 @@ export default {
   },
   methods: {
     setPlace (place) {
-      this.currentPlace = place.geometry.location
+      const currentPlace = {
+        coords: {
+          latitude: place.geometry.location.lat(),
+          longitude: place.geometry.location.lng()
+        }
+      }
+      this.$store.dispatch('setLocation', currentPlace)
     }
   }
 }
 </script>
+
+<style scoped lang="scss">
+.locationSelection {
+  width: 100%;
+  text-align: center;
+  max-width: 600px;
+  padding: 10px 0;
+  margin: 0 auto 20px auto;
+}
+</style>
