@@ -20,9 +20,9 @@
         md8
         class="mx-5 mt-3 mb-5"
       >
-        <nuxt-link to="/impressum">
+        <v-btn depressed class="button" nuxt to="/impressum">
           Impressum
-        </nuxt-link>
+        </v-btn>
         <!--<nuxt-link to="/overview">Datenschutz</nuxt-link> -->
       </v-flex>
     </v-layout>
@@ -77,5 +77,8 @@ export default {
 .ly-footer {
   margin-top: 50px;
   height: 50px;
+}
+.button {
+  color: black;
 }
 </style>

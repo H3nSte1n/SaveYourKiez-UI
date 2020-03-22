@@ -31,7 +31,7 @@
           nuxt
           depressed
           outlined
-          color="indigo"
+          color="black"
           large
           to="/splitscreen"
         >
