@@ -20,6 +20,7 @@
         <p>{{ city }}, {{ street }} {{ hnr }}</p>
         <v-img
           :src="image"
+          alt="company image"
           contain
         />
         <v-btn
