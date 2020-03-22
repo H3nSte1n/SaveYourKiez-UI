@@ -7,17 +7,19 @@
     <v-icon color="#000" width="60" large class="donation-icon" @click="$emit('close')">
       {{ mdiClose }}
     </v-icon>
-    <v-flex
-      xs12
-      sm10
-      md8
-    >
-      <h1>So kannst du spenden:</h1>
-      <v-container class="mt-6">
+    <v-flex class="donation__list mt-12">
+      <h1 class="text-center display-2 font-weight-bold">So kannst du spenden:</h1>
+      <v-flex
+        class="mt-6"
+        d-flex
+        flex-column
+        justify-space-around
+        align-center
+      >
         <Donate-Element :payment-info="payments" payment-type="paypal" />
         <Donate-Element :payment-info="payments" payment-type="gofoundme" />
         <Donate-Element :payment-info="payments" payment-type="bank" />
-      </v-container>
+      </v-flex>
     </v-flex>
   </v-layout>
 </template>
@@ -44,9 +46,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 .donation {
   position: relative;
+
+  &__list {
+    height: 100vh;
+  }
 }
 
 .donation-icon {
