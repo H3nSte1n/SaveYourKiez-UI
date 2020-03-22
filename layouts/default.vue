@@ -1,5 +1,15 @@
 <template>
   <v-app light>
+    <v-layout justify-center class="ly-header">
+      <v-flex
+        xs12
+        sm12
+        md8
+        class="mx-5 mt-3 mb-3"
+      >
+        <img src="~/assets/logo.png" alt="Shoutout!" class="ly-logo">
+      </v-flex>
+    </v-layout>
     <nuxt />
   </v-app>
 </template>
@@ -41,3 +51,11 @@ export default {
   }
 }
 </script>
+<style>
+.ly-header {
+  max-height: 80px;
+}
+.ly-logo {
+  width: 120px;
+}
+</style>
