@@ -13,6 +13,17 @@
       </v-flex>
     </v-layout>
     <nuxt />
+    <v-layout justify-center class="ly-footer">
+      <v-flex
+        xs12
+        sm12
+        md8
+        class="mx-5 mt-3 mb-5"
+      >
+        <!-- <nuxt-link to="/overview">Impressum</nuxt-link>
+        <nuxt-link to="/overview">Datenschutz</nuxt-link> -->
+      </v-flex>
+    </v-layout>
   </v-app>
 </template>
 
@@ -59,5 +70,9 @@ export default {
 }
 .ly-logo {
   width: 120px;
+}
+
+.ly-footer {
+  width: 100px;
 }
 </style>
