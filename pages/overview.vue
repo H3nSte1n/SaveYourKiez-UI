@@ -13,6 +13,7 @@
           <p>Längengrad: {{ location.coords.longitude }}</p>
         </div>
       </div>
+      <Filter-Companies />
       <ListOverview />
     </v-flex>
     <v-overlay :value="loading">
@@ -24,10 +25,12 @@
 <script>
 import getPosition from '~/plugins/geolocation'
 import ListOverview from '~/components/ListOverview'
+import FilterCompanies from '~/components/FilterCompanies'
 
 export default {
   components: {
-    ListOverview
+    ListOverview,
+    FilterCompanies
   },
   computed: {
     location () {

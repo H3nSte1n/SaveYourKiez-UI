@@ -18,7 +18,7 @@
     <gmap-map
       :center="center"
       :zoom="12"
-      style="width:100%;  height: 400px;"
+      style="width:100%;  height: 100vh;"
       :options="{
         zoomControl: true,
         mapTypeControl: true,
@@ -38,6 +38,7 @@
         :position="marker.position"
         :icon="marker.icon"
         :clickable="true"
+        :animation="2"
         @click="toggleInfoWindow(marker,index)"
       />
     </gmap-map>
