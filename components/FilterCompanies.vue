@@ -89,7 +89,6 @@ export default {
       this.$emit('max-distance', this.maxDistance)
     },
     activeCategories () {
-      console.log('this.filterCategories', this.activeCategories)
       this.$emit('filter-categories', this.activeCategories)
     }
   },
@@ -99,15 +98,12 @@ export default {
   },
   methods: {
     activateCategory (cat) {
-      console.log(cat)
       if (this.activeCategories.includes(cat)) {
         const index = this.activeCategories.indexOf(cat)
-        console.log(index)
         this.activeCategories.splice(index, 1)
       } else {
         this.activeCategories.push(cat)
       }
-      console.log(this.activeCategories)
     },
     useLocation () {
       this.$emit('location')

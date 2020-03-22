@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <v-flex
+    d-flex
+    flex-row
+    flex-wrap
+    justify-space-around
+  >
     <ListElement
       v-for="company in sortedCompanys"
       :key="company.id"
@@ -9,7 +14,7 @@
       :distance="company.distance"
       :link="company.slug"
     />
-  </div>
+  </v-flex>
 </template>
 
 <script>

@@ -1,39 +1,41 @@
 <template>
-  <v-flex xs12>
-    <v-card class="white--text mb-5">
-      <v-layout>
-        <v-avatar
-          class="profile"
-          color="grey"
+  <v-flex xs12 class="company-card black--text mt-7 mx-6">
+    <v-layout>
+      <v-flex
+        d-flex
+        flex-column
+        justify-space-around
+      >
+        <v-flex
+          d-flex
+          flex-row
+          justify-space-between
+          align-baseline
         >
-          <v-img
-            :src="image"
-            contain
-            class="mr-4"
-          />
-        </v-avatar>
-        <v-flex xs7 sm9 lg10 class="justify-center">
-          <v-card-title primary-title>
-            <v-flex xs12>
-              <div class="text-right body-2 font-weight-bold">
-                {{ distanceWithUnit }}
-              </div>
-              <div class="text-left body-2">
-                {{ category }}
-              </div>
-              <div class="headline text-left">
-                {{ headline }}
-              </div>
-              <div class="text-left pt-2 ">
-                <v-btn nuxt text :to="link" small dark>
-                  Jetzt supporten
-                </v-btn>
-              </div>
-            </v-flex>
-          </v-card-title>
+          <h1 class="$Plex-Sans-font-family">{{ headline }}</h1>
+          <div class="text-right body-2 font-weight-bold">
+            {{ distanceWithUnit }}
+          </div>
         </v-flex>
-      </v-layout>
-    </v-card>
+        <p>category</p>
+        <v-img
+          :src="image"
+          contain
+        />
+        <v-btn
+          nuxt
+          text
+          :to="link"
+          small
+          dark
+          color="black"
+          class="button mt-2 ml-auto"
+          depressed
+        >
+          Jetzt supporten
+        </v-btn>
+      </v-flex>
+    </v-layout>
   </v-flex>
 </template>
 
@@ -68,3 +70,15 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.company-card {
+  max-width: 400px;
+}
+
+.button {
+  max-width: 200px;
+  border-bottom: 1px solid black;
+}
+
+</style>

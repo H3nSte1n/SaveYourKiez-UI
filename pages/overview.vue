@@ -20,9 +20,9 @@
         flex-row
         justify-space-around
         align-end
-        class="landscapeButton"
+        class="landscapeButton mb-9"
       >
-        <v-btn class="mx-2 my-4" fab dark color="black" @click="listView = !listView">
+        <v-btn class="mx-2 mt-4" fab dark color="black" @click="listView = !listView">
           <v-icon color="white">
             {{ mdiMapOutline }}
           </v-icon>
