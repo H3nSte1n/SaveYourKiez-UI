@@ -13,15 +13,17 @@
       </v-flex>
     </v-layout>
     <nuxt />
-    <v-layout justify-center class="ly-footer">
+    <v-layout justify-center class="ly-footer text-right">
       <v-flex
         xs12
         sm12
         md8
         class="mx-5 mt-3 mb-5"
       >
-        <!-- <nuxt-link to="/overview">Impressum</nuxt-link>
-        <nuxt-link to="/overview">Datenschutz</nuxt-link> -->
+        <nuxt-link to="/impressum">
+          Impressum
+        </nuxt-link>
+        <!--<nuxt-link to="/overview">Datenschutz</nuxt-link> -->
       </v-flex>
     </v-layout>
   </v-app>
@@ -48,7 +50,7 @@ export default {
         {
           icon: 'mdi-chart-bubble',
           title: 'Split Screen',
-          to: '/splitScreen'
+          to: '/splitscreen'
         },
         {
           icon: 'mdi-chart-bubble',
@@ -73,6 +75,7 @@ export default {
 }
 
 .ly-footer {
-  width: 100px;
+  margin-top: 50px;
+  height: 50px;
 }
 </style>
