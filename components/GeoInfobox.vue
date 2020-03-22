@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-3">
+  <v-container class="pa-3">
     <h2 class="headline mb-3">
       {{ company.name }}
     </h2>
