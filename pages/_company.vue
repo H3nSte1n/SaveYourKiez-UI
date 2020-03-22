@@ -3,7 +3,7 @@
     <v-container v-if="company" fluid>
       <v-row justify="space-around" class="mb-10">
         <v-col cols="12">
-          <v-img src="https://i.picsum.photos/id/299/1300/300.jpg" min-height="200" />
+          <v-img src="https://picsum.photos/1300/300" min-height="200" />
         </v-col>
       </v-row>
       <v-dialog v-model="showPayment" content-class="company-dialog" fullscreen hide-overlay transition="dialog-bottom-transition">

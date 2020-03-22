@@ -19,7 +19,7 @@
         </v-flex>
         <p>{{ city }}, {{ street }} {{ hnr }}</p>
         <v-img
-          :src="image"
+          :src="`https://picsum.photos/450/300?random=${headline}`"
           contain
         />
         <v-btn
@@ -42,10 +42,6 @@
 <script>
 export default {
   props: {
-    image: {
-      type: String,
-      default: 'https://picsum.photos/450/300'
-    },
     headline: {
       type: String,
       default: 'Frittebud'

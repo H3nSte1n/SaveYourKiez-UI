@@ -16,7 +16,7 @@
           v-for="(item,i) in items"
           :key="i"
         >
-          <v-img height="300" :src="`${item.logo}`" :alt="item.alt" />
+          <v-img height="300" :src="`https://picsum.photos/1200/400?random=${item.header}`" :alt="item.alt" />
           <div class="pb-12">
             <h2 class="ma-4">{{ item.header }}</h2>
             <blockquote class="text-left ma-4">
@@ -49,19 +49,16 @@ export default {
     return {
       items: [
         {
-          logo: 'test.jpg',
           alt: 'test',
           header: 'First Header',
           text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
         },
         {
-          logo: 'test2.jpg',
           alt: 'test2',
           header: 'Second Header',
           text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
         },
         {
-          logo: 'test3.jpg',
           alt: 'test3',
           header: 'Third Header',
           text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
