@@ -15,6 +15,9 @@
       </div>
       <ListOverview />
     </v-flex>
+    <v-overlay :value="loading">
+      <v-progress-circular indeterminate size="64" />
+    </v-overlay>
   </v-layout>
 </template>
 
@@ -29,15 +32,21 @@ export default {
   computed: {
     location () {
       return this.$store.state.location
+    },
+    loading () {
+      return this.$store.state.loading
     }
   },
   mounted () {
-    if (!this.$store.state.location.coords) { getPosition(this.saveToStore) }
+    if (!this.$store.state.location.coords) {
+      this.$store.dispatch('setLoading', true)
+      getPosition(this.saveToStore)
+    }
   },
   methods: {
     saveToStore (pos) {
-      this.$store.commit('setLocation', pos)
-      console.log(this.$store.state.location)
+      this.$store.dispatch('setLocation', pos)
+      this.$store.dispatch('setLoading', false)
     }
   }
 }
