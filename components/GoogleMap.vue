@@ -29,7 +29,7 @@
         disableDefaultUi: false
       }"
     >
-      <gmap-info-window :options="infoWindow.infoOptions" :position="infoWindow.infoWindowPosition" :opened="infoWindow.infoWindowOpenStatus" @closeclick="infoWindow.infoWindowOpenStatus=false">
+      <gmap-info-window :options="infoWindow.infoOptions" :position="{lat: 0, }" :opened="infoWindow.infoWindowOpenStatus" @closeclick="infoWindow.infoWindowOpenStatus=false">
         <geo-info-box v-if="currentIndex != null" :company-infos="companyInfos" :current-index="currentIndex" />
       </gmap-info-window>
       <gmap-marker
@@ -82,10 +82,10 @@ export default {
       currentIndex: null,
       icons: {
         kiosk: {
-          icon: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png'
+          icon: '/food-kategory-icon.png'
         },
         bar: {
-          icon: 'library_maps.png'
+          icon: '/bar-kategory-icon.png'
         },
         supermarket: {
           icon: 'info-i_maps.png'
