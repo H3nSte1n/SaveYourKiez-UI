@@ -13,14 +13,14 @@
       </v-flex>
     </v-layout>
     <nuxt />
-    <v-layout justify-center class="ly-footer">
+    <v-layout justify-center class="ly-footer text-right">
       <v-flex
         xs12
         sm12
         md8
         class="mx-5 mt-3 mb-5"
       >
-        <nuxt-link to="/imprint">
+        <nuxt-link to="/impressum">
           Impressum
         </nuxt-link>
         <!--<nuxt-link to="/overview">Datenschutz</nuxt-link> -->
@@ -75,6 +75,7 @@ export default {
 }
 
 .ly-footer {
-  width: 100px;
+  margin-top: 50px;
+  height: 50px;
 }
 </style>
