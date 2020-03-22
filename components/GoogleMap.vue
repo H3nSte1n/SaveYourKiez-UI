@@ -5,7 +5,7 @@
     </div>
     <gmap-map
       :center="center"
-      :zoom="14"
+      :zoom="15"
       style="width:100%;  height: 100vh;"
       :options="{
         zoomControl: true,
@@ -35,7 +35,6 @@
 
 <script>
 import GeoInfoBox from './GeoInfobox'
-
 export default {
   name: 'GoogleMap',
   components: {
@@ -56,18 +55,11 @@ export default {
         infoWindowOpenStatus: false
       },
       icons: {
-        kiosk: {
-          icon: '/food-kategory-icon.png'
-        },
-        bar: {
-          icon: '/bar-kategory-icon.png'
-        },
-        shop: {
-          icon: 'info-i_maps.png'
-        },
-        bookmarket: {
-          icon: 'info-i_maps.png'
-        }
+        bar: require('~/assets/bar-active.png'),
+        kiosk: require('~/assets/kiosk-active.png'),
+        cafe: require('~/assets/cafe-active.png'),
+        food: require('~/assets/food-active.png'),
+        coiffeur: require('~/assets/barber-active.png')
       }
     }
   },
@@ -86,7 +78,7 @@ export default {
       this.companies.forEach((el) => {
         markerArray.push({
           id: el.id,
-          icon: this.icons[el.category] || 'bar-kategory-icon.png',
+          icon: this.icons[el.category] || require('~/assets/bar-active.png'),
           position: { lat: Number(el.latitude), lng: Number(el.longitude) }
         })
       })

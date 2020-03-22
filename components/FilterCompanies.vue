@@ -29,13 +29,13 @@
       </template>
     </v-slider>
     <v-row justify="space-around">
-      <v-checkbox
-        v-for="(cat, index) in categories"
-        :key="index"
-        v-model="filterCategories"
-        :label="cat"
-        :value="cat"
-      />
+      <span v-for="(cat, index) in categories" :key="index">
+        <v-checkbox
+          v-model="filterCategories"
+          :label="cat"
+          :value="cat"
+        />
+      </span>
     </v-row>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
   data () {
     return {
       maxDistance: 10000,
-      filterCategories: ['coiffeur', 'kiosk', 'cafe', 'bar', 'shop', 'food', 'club']
+      filterCategories: ['cafe', 'bar', 'shop', 'coiffeur', 'kiosk', 'food', 'club']
     }
   },
   computed: {
