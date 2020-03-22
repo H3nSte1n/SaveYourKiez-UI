@@ -50,18 +50,18 @@ export default {
       items: [
         {
           alt: 'test',
-          header: 'First Header',
-          text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
+          header: 'Jetzt ma’ Tacheles ',
+          text: 'Jeder hat Sie, jeder kennt sie, jeder liebt sie – die kleinen Läden, die das Viertel besonders machen. Das Café um’s Eck, die Kneipe nebenan oder der Buchladen ne Straße weiter.'
         },
         {
           alt: 'test2',
-          header: 'Second Header',
+          header: 'Ohne Moos, nix los ',
           text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
         },
         {
           alt: 'test3',
-          header: 'Third Header',
-          text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
+          header: 'Nimm dir ’ne Minute',
+          text: 'Unterstütze was dir lieb ist oder sag ganz offen, was dir am liebsten wäre. Shoutout ist für alle, für Nachbarn und Unternehmer, für Unterstützer und Arbeitgeber. Shoutout ist für dein Viertel.'
         }
       ]
     }
