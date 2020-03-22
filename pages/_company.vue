@@ -1,66 +1,68 @@
 <template>
-  <v-container v-if="company" fluid>
-    <v-row justify="space-around" class="mb-10">
-      <v-col cols="12">
-        <v-img src="https://i.picsum.photos/id/299/1300/300.jpg" min-height="200" />
-      </v-col>
-    </v-row>
-    <v-row justify="space-around">
-      <v-col
-        cols="12"
-        sm="8"
-        md="5"
-        offset-md="3"
-      >
-        <h1 class="display-1 mb-1 font-weight-black">
-          {{ company.title }}
-        </h1>
+  <v-layout justify-center>
+    <v-container v-if="company" fluid>
+      <v-row justify="space-around" class="mb-10">
+        <v-col cols="12">
+          <v-img src="https://i.picsum.photos/id/299/1300/300.jpg" min-height="200" />
+        </v-col>
+      </v-row>
+      <v-row justify="space-around">
+        <v-col
+          cols="12"
+          sm="8"
+          md="5"
+          offset-md="3"
+        >
+          <h1 class="display-1 mb-1 font-weight-black">
+            {{ company.title }}
+          </h1>
 
-        <p>{{ company.city }}, {{ company.street }} {{ company.street_number }}</p>
-        <div class="mb-10">
-          <a
-            v-for="(link, index) in company.properties.links"
-            :key="index"
-            :href="link"
-          >
-            <img v-if="index !== 'website'" :src="`/${index}.png`" class="mr-5 socialmedia">
+          <p>{{ company.city }}, {{ company.street }} {{ company.street_number }}</p>
+          <div class="mb-10">
+            <a
+              v-for="(link, index) in company.properties.links"
+              :key="index"
+              :href="link"
+            >
+              <img v-if="index !== 'website'" :src="`/${index}.png`" class="mr-5 socialmedia">
+            </a>
+          </div>
+          <p class="title">
+            {{ company.properties.description }}
+          </p>
+          <p class="font-weight-regular body-2 mb-10">
+            {{ company.keeper_name }}<br>
+            <span class="grey--text text-uppercase">Inhaber/in</span>
+          </p>
+          <v-btn nuxt to="/overview">
+            Zurück
+          </v-btn>
+        </v-col>
+        <v-col
+          cols="12"
+          sm="4"
+          offset-md="1"
+          md="3"
+        >
+          <v-btn color="#000" dark large class="pl-10 pr-10 mb-12">
+            Jetzt spenden
+          </v-btn>
+          <h3 class="title mb-2">
+            Diese Seite teilen
+          </h3>
+          <a :href="`https://www.facebook.com/sharer/sharer.php?u=https%3A//shoutout.jetzt${$route.fullPath}`" target="_blank">
+            <img src="/facebook.png" alt="facebook" class="share mr-8">
           </a>
-        </div>
-        <p class="title">
-          {{ company.properties.description }}
-        </p>
-        <p class="font-weight-regular body-2 mb-10">
-          {{ company.keeper_name }}<br>
-          <span class="grey--text text-uppercase">Inhaber/in</span>
-        </p>
-        <v-btn nuxt to="/overview">
-          Zurück
-        </v-btn>
-      </v-col>
-      <v-col
-        cols="12"
-        sm="4"
-        offset-md="1"
-        md="3"
-      >
-        <v-btn color="#000" dark large class="pl-10 pr-10 mb-12">
-          Jetzt spenden
-        </v-btn>
-        <h3 class="title mb-2">
-          Diese Seite teilen
-        </h3>
-        <a :href="`https://www.facebook.com/sharer/sharer.php?u=https%3A//shoutout.jetzt${$route.fullPath}`" target="_blank">
-          <img src="/facebook.png" alt="facebook" class="share mr-8">
-        </a>
-        <a :href="`https://twitter.com/intent/tweet?text=https%3A//shoutout.jetzt${$route.fullPath}`" target="_blank">
-          <img src="/twitter.png" alt="twitter" class="share mr-8">
-        </a>
-        <a :href="`https://wa.me/?text=https%3A//shoutout.jetzt${$route.fullPath}`" target="_blank">
-          <img src="/whatsapp.png" alt="whatsapp" class="share">
-        </a>
-      </v-col>
-    </v-row>
-  </v-container>
+          <a :href="`https://twitter.com/intent/tweet?text=https%3A//shoutout.jetzt${$route.fullPath}`" target="_blank">
+            <img src="/twitter.png" alt="twitter" class="share mr-8">
+          </a>
+          <a :href="`https://wa.me/?text=https%3A//shoutout.jetzt${$route.fullPath}`" target="_blank">
+            <img src="/whatsapp.png" alt="whatsapp" class="share">
+          </a>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-layout>
 </template>
 
 <script>

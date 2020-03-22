@@ -16,23 +16,31 @@
         <p class="title text-left">
           Gib deinen Standort ein oder tippe die Postleitzahl ein.
         </p>
-        <gmap-autocomplete class="location__Selection" @place_changed="setPlace">
-          <template v-slot:input="slotProps">
-            <v-text-field
-              ref="input"
-              primary
-              outlined
-              prepend-inner-icon="place"
-              placeholder="Location Of Event"
-              @listeners="slotProps.listeners"
-              @attrs="slotProps.attrs"
-            />
-          </template>
-        </gmap-autocomplete>
+        <div class="d-flex fill-width">
+          <gmap-autocomplete class="location__Selection flex-grow-1" @place_changed="setPlace">
+            <template v-slot:input="slotProps">
+              <v-text-field
+                ref="input"
+                primary
+                outlined
+                prepend-inner-icon="place"
+                placeholder="Location Of Event"
+                @listeners="slotProps.listeners"
+                @attrs="slotProps.attrs"
+              />
+            </template>
+          </gmap-autocomplete>
+          <v-btn
+            color="white"
+            fab
+            small
+            class=""
+            @click="useLocation"
+          >
+            <v-icon>{{ mdiCrosshairsGps }}</v-icon>
+          </v-btn>
+        </div>
       </v-flex>
-      <v-btn outlined color="black" class="mr-4 mb-3 align-self-center mt-5" @click="useLocation">
-        Standort erkennen
-      </v-btn>
       <v-slider
         v-model="maxDistance"
         min="0"
@@ -70,11 +78,12 @@
 </template>
 
 <script>
+import { mdiCrosshairsGps } from '@mdi/js'
 export default {
   data () {
     return {
+      mdiCrosshairsGps,
       maxDistance: 10000,
-      filterCategories: ['cafe', 'bar', 'shop', 'coiffeur', 'kiosk', 'food', 'club'],
       activeCategories: ['cafe', 'bar', 'shop', 'coiffeur', 'kiosk', 'food', 'club']
     }
   },
@@ -137,21 +146,22 @@ export default {
     border-bottom: 1px solid black;
     text-align: left;
 
-      &::focus {
+      &:focus {
         border: none;
       }
     }
   }
 
   .slider {
-    max-width: 600px;
+    max-width: 800px;
     min-width: 400px;
   }
 
   .checkbox__wrapper {
-    max-width: 600px;
+    max-width: 800px;
   };
   .checkbox {
+    text-transform: capitalize;
     border: 1px solid black;
     color: black;
 
@@ -159,6 +169,9 @@ export default {
       background-color: black;
       color: white;
     }
+  }
+  .fill-width {
+    width: 100%;
   }
 }
 </style>
