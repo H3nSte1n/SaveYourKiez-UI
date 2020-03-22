@@ -4,23 +4,31 @@
   >
     <v-flex
       xs12
-      sm10
+      sm12
       md8
+      justify-center
+      class="mx-5"
     >
-      <div class="text-center">
-        <div v-if="location.coords">
-          <p>Breitengrad: {{ location.coords.latitude }}</p>
-          <p>Längengrad: {{ location.coords.longitude }}</p>
-        </div>
-      </div>
+    <h1 class="display-2 font-weight-bold mt-5" color="black">Welches Viertel darf es sein?</h1>
       <Filter-Companies
         @location="useLocation"
         @max-distance="setMaxDistance"
         @filter-categories="setFilterCategories"
       />
-      <v-switch v-model="listView">
-        Toogle View
-      </v-switch>
+      <v-flex
+        d-flex
+        flex-row
+        justify-space-around
+        align-end
+        class="landscapeButton"
+      >
+        <v-btn class="mx-2 my-4" fab dark color="black" @click="listView = !listView">
+          <v-icon color="white">
+            {{ mdiMapOutline }}
+          </v-icon>
+        </v-btn>
+        <p class="ml-3">Ansicht als Karte</p>
+      </v-flex>
       <ListOverview
         v-if="listView"
         :max-distance="maxDistance"
@@ -35,6 +43,7 @@
 </template>
 
 <script>
+import { mdiMapOutline } from '@mdi/js'
 import getPosition from '~/plugins/geolocation'
 import ListOverview from '~/components/ListOverview'
 import GoogleMap from '~/components/GoogleMap'
@@ -50,7 +59,8 @@ export default {
     return {
       maxDistance: 0,
       listView: true,
-      filterCategories: []
+      filterCategories: [],
+      mdiMapOutline
     }
   },
   computed: {
@@ -79,3 +89,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.landscapeButton {
+  width: 168px;
+}
+</style>

@@ -7,7 +7,7 @@
     <v-btn nuxt :to="`/${company.slug}`">
       Zum Profil
     </v-btn>
-  </div>
+  </v-container>
 </template>
 
 <script>

@@ -1,13 +1,17 @@
 <template>
   <v-flex xs12>
-    <v-card color="teal" class="white--text">
+    <v-card class="white--text mb-5">
       <v-layout>
-        <v-flex xs5 sm3 lg2>
+        <v-avatar
+          class="profile"
+          color="grey"
+        >
           <v-img
             :src="image"
             contain
+            class="mr-4"
           />
-        </v-flex>
+        </v-avatar>
         <v-flex xs7 sm9 lg10 class="justify-center">
           <v-card-title primary-title>
             <v-flex xs12>
