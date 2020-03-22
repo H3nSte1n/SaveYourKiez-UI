@@ -1,5 +1,5 @@
 <template>
-  <v-flex xs12 class="company-card black--text mt-7 mx-6">
+  <v-flex xs12 md5 class="company-card black--text mt-7 mx-6">
     <v-layout>
       <v-flex
         d-flex
@@ -19,8 +19,7 @@
         </v-flex>
         <p>{{ city }}, {{ street }} {{ hnr }}</p>
         <v-img
-          :src="image"
-          alt="company image"
+          :src="`https://picsum.photos/450/300?random=${headline}`"
           contain
         />
         <v-btn
@@ -43,10 +42,6 @@
 <script>
 export default {
   props: {
-    image: {
-      type: String,
-      default: 'https://picsum.photos/450/300'
-    },
     headline: {
       type: String,
       default: 'Frittebud'
@@ -85,10 +80,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.company-card {
-  max-width: 400px;
-}
-
 .button {
   max-width: 200px;
   border-bottom: 1px solid black;

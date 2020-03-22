@@ -5,9 +5,11 @@
         xs12
         sm12
         md8
-        class="mx-5 mt-3 mb-3"
+        class="mx-5 mt-3 mb-5"
       >
-        <img src="~/assets/logo.png" alt="Shoutout!" class="ly-logo">
+        <nuxt-link to="/overview">
+          <img src="~/assets/logo.png" alt="Shoutout!" class="ly-logo">
+        </nuxt-link>
       </v-flex>
     </v-layout>
     <nuxt />
@@ -53,7 +55,7 @@ export default {
 </script>
 <style>
 .ly-header {
-  max-height: 80px;
+  max-height: 100px;
 }
 .ly-logo {
   width: 120px;

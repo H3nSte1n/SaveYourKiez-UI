@@ -6,25 +6,26 @@
           <v-card-title primary-title>
             <v-flex xs12>
               <h1>
-                {{ donateObj.headline }}
+                {{ paymentHeadlines[paymentType] }}
               </h1>
               <v-btn
-                v-if="donateObj.button"
+                v-if="paymentType !== 'bank'"
                 rounded
                 color="white"
                 width="100%"
                 max-width="400px"
                 class="mt-9 px-12 py-7"
                 link
-                :href="donateObj.button.link"
+                :href="paymentInfo[paymentType]"
+                target="_blank"
               >
                 <v-icon size="50" dark>
                   {{ mdiArrowRightThick }}
                 </v-icon>
               </v-btn>
-              <p v-if="donateObj.info" class="pt-7">
-                Name: <nobr>{{ donateObj.info.name }}</nobr> <br>
-                IBAN: <nobr>{{ donateObj.info.iban }}</nobr>
+              <p v-if="paymentType === 'bank'" class="pt-7">
+                Name: <nobr>Max Mustermann</nobr> <br>
+                IBAN: <nobr>0011 1111 3333 3322</nobr>
               </p>
             </v-flex>
           </v-card-title>
@@ -39,14 +40,23 @@ import { mdiArrowRightThick } from '@mdi/js'
 
 export default {
   props: {
-    donateObj: {
+    paymentInfo: {
       type: Object,
-      required: true
+      default: () => {}
+    },
+    paymentType: {
+      type: String,
+      default: ''
     }
   },
   data () {
     return {
-      mdiArrowRightThick
+      mdiArrowRightThick,
+      paymentHeadlines: {
+        paypal: 'PayPal',
+        gofoundme: 'GoFundMe',
+        bank: 'Banküberweisung'
+      }
     }
   },
   computed: {

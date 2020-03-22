@@ -3,15 +3,18 @@
     <v-container v-if="company" fluid>
       <v-row justify="space-around" class="mb-10">
         <v-col cols="12">
-          <v-img src="https://i.picsum.photos/id/299/1300/300.jpg" min-height="200" />
+          <v-img src="https://picsum.photos/1300/300" min-height="200" />
         </v-col>
       </v-row>
+      <v-dialog v-model="showPayment" content-class="company-dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+        <Donation :payments="company.properties.payment" @close="showPayment = false" />
+      </v-dialog>
       <v-row justify="space-around">
         <v-col
           cols="12"
           sm="8"
-          md="5"
-          offset-md="3"
+          md="6"
+          offset-md="2"
         >
           <h1 class="display-1 mb-1 font-weight-black">
             {{ company.title }}
@@ -44,7 +47,7 @@
           offset-md="1"
           md="3"
         >
-          <v-btn color="#000" dark large class="pl-10 pr-10 mb-12">
+          <v-btn color="#000" dark large class="pl-10 pr-10 mb-12" @click="showPayment = true">
             Jetzt spenden
           </v-btn>
           <h3 class="title mb-2">
@@ -67,6 +70,8 @@
 
 <script>
 
+import Donation from '~/components/Donation'
+
 export default {
   async validate ({ params, store }) {
     const { companies } = store.state
@@ -76,6 +81,14 @@ export default {
       return parsedCompanies.find(el => el.slug === params.company)
     }
     return companies.find(el => el.slug === params.company)
+  },
+  components: {
+    Donation
+  },
+  data () {
+    return {
+      showPayment: false
+    }
   },
   computed: {
     company () {
@@ -91,5 +104,9 @@ export default {
 
 .share {
   height: 25px;
+}
+.company-dialog {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.95);
 }
 </style>

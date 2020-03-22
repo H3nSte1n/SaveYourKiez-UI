@@ -113,14 +113,3 @@ export default {
   }
 }
 </script>
-
-<style scoped class="scss">
-.test {
-  width: 100%;
-  text-align: center;
-  max-width: 600px;
-  padding: 10px 0;
-  border-bottom: 1px solid black;
-}
-
-</style>
