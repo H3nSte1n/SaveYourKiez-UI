@@ -1,59 +1,63 @@
 <template>
-  <v-flex flex-column fill-height>
-    <v-card
-      class="d-flex align-start flex-column justify-space-between"
-      color="grey lighten-2"
-      flat
-      tile
-      height="50vh"
+  <v-layout
+    justify-space-around
+    align-center
+    class="ma-4"
+  >
+    <v-flex
+      d-flex
+      flex-row
+      flex-wrap
+      justify-space-around
+      class="wrapper"
     >
-      <h2 class="text-center font-weight-bold mt-8 ml-auto mr-auto">
-        Du willst helfen
-      </h2>
-      <v-btn
-        exact
-        outlined
-        nuxt
-        right
-        bottom
-        to="/overview"
-        class="ml-auto mr-5 mb-5 pa-6 px-9"
-      >
-        Weiter
-      </v-btn>
-    </v-card>
-    <v-divider
-      dark
-      inset
-    />
-    <v-card
-      class="d-flex align-start flex-column justify-space-between"
-      color="grey lighten-2"
-      flat
-      tile
-      height="50vh"
-    >
-      <h2 class="text-center font-weight-bold mt-8 ml-auto mr-auto">
-        Du brauchst hilfe
-      </h2>
-      <v-btn
-        exact
-        outlined
-        nuxt
-        to="/"
-        class="ml-auto mr-5 mb-5 pa-6 px-9"
-      >
-        Weiter
-      </v-btn>
-    </v-card>
-  </v-flex>
+      <selection-card v-for="(field, key) in selectionFields" :key="key" :selection-type="field" />
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
-export default {
+import SelectionCard from '~/components/SelectionCard'
 
+export default {
+  components: {
+    SelectionCard
+  },
+  data () {
+    return {
+      selectionFields: [
+        {
+          headline: 'Für Viertel Freunde',
+          desc: 'Du bist Bücherwurm, Bohnengourmet oder Hopfenkönig? Dann supporte jetzt dein Viertel. Suche deine Lieblingsläden und unterstütze, was dir am Herzen liegt. Mit Spenden, mit Einfällen oder Reichweite.',
+          btn: {
+            to: '/overview',
+            text: 'Local finden'
+          },
+          img: {
+            alt: 'fuer viertel freunde',
+            src: 'https://picsum.photos/450/500?random="asdas2131sd"'
+          }
+        },
+        {
+          headline: 'Für Viertel-Helden',
+          desc: 'Du bist Zapfmeister, Cafébetreiber, Schnittschwester oder Meisterkoch? Lass es dein Viertel wissen. Registrier dein Unternehmen und nutze die Plattform für ein Shoutout – für Unterstützung, für Ideen, für Aufmerksamkeit.',
+          btn: {
+            to: '/overview',
+            text: 'Registrieren'
+          },
+          img: {
+            alt: 'fuer viertel freunde',
+            src: 'https://picsum.photos/450/500'
+          }
+        }
+      ]
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  max-width: 1600px;
+}
 </style>
