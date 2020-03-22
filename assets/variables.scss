@@ -6,10 +6,3 @@
 $body-font-family: 'IBM Plex Mono', 'monospace';
 
 $heading-font-family: 'IBM Plex Sans', 'sans-serif';
-
-.v-application {
-  font-family: $body-font-family, sans-serif !important;
-   .title { // To pin point specific classes of some components
-      font-family: $heading-font-family, sans-serif !important;
-   }
-}

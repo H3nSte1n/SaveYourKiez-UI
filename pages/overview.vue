@@ -27,7 +27,7 @@
             {{ mdiMapOutline }}
           </v-icon>
         </v-btn>
-        <p class="ml-3">Ansicht als Karte</p>
+        <p class="ml-3 mb-0">Ansicht als Karte</p>
       </v-flex>
       <ListOverview
         v-if="listView"

@@ -11,6 +11,9 @@
       class="mb-2"
       :headline="company.title"
       :category="company.category"
+      :street="company.street"
+      :city="company.city"
+      :hnr="company.street_number"
       :distance="company.distance"
       :link="company.slug"
     />

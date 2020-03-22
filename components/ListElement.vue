@@ -17,7 +17,7 @@
             {{ distanceWithUnit }}
           </div>
         </v-flex>
-        <p>category</p>
+        <p>{{ city }}, {{ street }} {{ hnr }}</p>
         <v-img
           :src="image"
           contain
@@ -29,10 +29,10 @@
           small
           dark
           color="black"
-          class="button mt-2 ml-auto"
+          class="button mt-3 ml-auto"
           depressed
         >
-          Jetzt supporten
+          jetzt supporten
         </v-btn>
       </v-flex>
     </v-layout>
@@ -44,7 +44,7 @@ export default {
   props: {
     image: {
       type: String,
-      default: 'https://i.picsum.photos/id/299/200/200.jpg'
+      default: 'https://picsum.photos/450/300'
     },
     headline: {
       type: String,
@@ -53,6 +53,18 @@ export default {
     category: {
       type: String,
       default: 'Restaurant'
+    },
+    street: {
+      type: String,
+      default: 'Konradadenerplatz'
+    },
+    hnr: {
+      type: String,
+      default: '25'
+    },
+    city: {
+      type: String,
+      default: 'Bonn'
     },
     distance: {
       type: Number,
