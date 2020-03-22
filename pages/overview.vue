@@ -14,7 +14,8 @@
         </div>
       </div>
       <Filter-Companies />
-      <ListOverview />
+      <ListOverview v-if="viewToggle" />
+      <Google-Map v-if="!viewToggle" />
     </v-flex>
     <v-overlay :value="loading">
       <v-progress-circular indeterminate size="64" />
@@ -25,12 +26,19 @@
 <script>
 import getPosition from '~/plugins/geolocation'
 import ListOverview from '~/components/ListOverview'
+import GoogleMap from '~/components/GoogleMap'
 import FilterCompanies from '~/components/FilterCompanies'
 
 export default {
   components: {
     ListOverview,
-    FilterCompanies
+    FilterCompanies,
+    GoogleMap
+  },
+  data () {
+    return {
+      viewToggle: true
+    }
   },
   computed: {
     location () {
