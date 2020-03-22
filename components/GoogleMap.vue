@@ -101,7 +101,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.location)
     this.geolocate()
   },
   methods: {
