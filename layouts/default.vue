@@ -20,8 +20,10 @@
         md8
         class="mx-5 mt-3 mb-5"
       >
-        <!-- <nuxt-link to="/overview">Impressum</nuxt-link>
-        <nuxt-link to="/overview">Datenschutz</nuxt-link> -->
+        <nuxt-link to="/imprint">
+          Impressum
+        </nuxt-link>
+        <!--<nuxt-link to="/overview">Datenschutz</nuxt-link> -->
       </v-flex>
     </v-layout>
   </v-app>
@@ -48,7 +50,7 @@ export default {
         {
           icon: 'mdi-chart-bubble',
           title: 'Split Screen',
-          to: '/splitScreen'
+          to: '/splitscreen'
         },
         {
           icon: 'mdi-chart-bubble',

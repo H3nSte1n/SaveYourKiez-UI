@@ -13,7 +13,7 @@
         progress-color="#1E88E5"
       >
         <v-carousel-item
-          v-for="(item,i) in items"
+          v-for="(item, i) in items"
           :key="i"
         >
           <v-img height="300" :src="`https://picsum.photos/1200/400?random=${item.header}`" :alt="item.alt" />
@@ -33,7 +33,7 @@
           outlined
           color="indigo"
           large
-          to="/SplitScreen"
+          to="/splitscreen"
         >
           Los geht's
         </v-btn>
@@ -68,7 +68,6 @@ export default {
   },
   mounted () {
     this.fetchCompanies()
-    console.log(process.env.TESTVAR)
   },
   methods: {
     async fetchCompanies () {
