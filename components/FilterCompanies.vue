@@ -161,6 +161,7 @@ export default {
     max-width: 800px;
   };
   .checkbox {
+    cursor: pointer;
     text-transform: capitalize;
     border: 1px solid black;
     color: black;
