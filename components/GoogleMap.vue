@@ -2,23 +2,11 @@
   <div>
     <div>
       <slot />
-      <gmap-autocomplete @place_changed="setPlace" class="test">
-        <template v-slot:input="slotProps">
-          <v-text-field
-            ref="input"
-            outlined
-            prepend-inner-icon="place"
-            placeholder="Location Of Event"
-            @listeners="slotProps.listeners"
-            @attrs="slotProps.attrs"
-          />
-        </template>
-      </gmap-autocomplete>
     </div>
     <gmap-map
       :center="center"
       :zoom="12"
-      style="width:100%;  height: 400px;"
+      style="width:100%;  height: 100vh;"
       :options="{
         zoomControl: true,
         mapTypeControl: true,
@@ -29,7 +17,7 @@
         disableDefaultUi: false
       }"
     >
-      <gmap-info-window :options="infoWindow.infoOptions" :position="{lat: 0, }" :opened="infoWindow.infoWindowOpenStatus" @closeclick="infoWindow.infoWindowOpenStatus=false">
+      <gmap-info-window :options="infoWindow.infoOptions" :position="infoWindow.infoWindowPosition" :opened="infoWindow.infoWindowOpenStatus" @closeclick="infoWindow.infoWindowOpenStatus=false">
         <geo-info-box v-if="currentIndex != null" :company-infos="companyInfos" :current-index="currentIndex" />
       </gmap-info-window>
       <gmap-marker
@@ -38,6 +26,7 @@
         :position="marker.position"
         :icon="marker.icon"
         :clickable="true"
+        :animation="2"
         @click="toggleInfoWindow(marker,index)"
       />
     </gmap-map>
@@ -112,7 +101,7 @@ export default {
     }
   },
   mounted () {
-    // this.geolocate()
+    this.geolocate()
   },
   methods: {
     setPlace (place) {
@@ -129,13 +118,17 @@ export default {
       }
     },
     geolocate () {
-      this.center = {
-        lat: this.location.coords.latitude,
-        lng: this.location.coords.longitude
+      console.log('locationMap', this.location)
+      if (this.$store.state.location.coords) {
+        this.center = {
+          lat: location.coords.latitude,
+          lng: location.coords.longitude
+        }
+      } else {
+
       }
     },
     toggleInfoWindow (marker, i) {
-      console.log('test')
       this.infoWindow.infoWindowPosition = marker.position
 
       if (this.currentIndex === i) {
@@ -144,7 +137,6 @@ export default {
         this.infoWindow.infoWindowOpenStatus = true
         this.currentIndex = i
       }
-      console.log(this.currentIndex)
     }
   }
 }

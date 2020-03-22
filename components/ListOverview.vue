@@ -1,26 +1,5 @@
 <template>
   <div>
-    <v-slider
-      v-model="maxDistance"
-      min="0"
-      max="50000"
-      label="Maximale Distanz"
-      :thumb-size="48"
-      :thumb-label="true"
-    >
-      <template v-slot:thumb-label="{ value }">
-        {{ Math.round(value / 1000) }}km
-      </template>
-    </v-slider>
-    <v-row justify="space-around">
-      <v-checkbox
-        v-for="(cat, index) in categories"
-        :key="index"
-        v-model="filterCategories"
-        :label="cat"
-        :value="cat"
-      />
-    </v-row>
     <ListElement
       v-for="company in sortedCompanys"
       :key="company.id"
@@ -40,15 +19,14 @@ export default {
   },
   data () {
     return {
-      maxDistance: 15000,
       // categories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur'],
       filterCategories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur']
     }
   },
   computed: {
-    categories () {
-      const mappedCategories = this.$store.state.companies.map(c => c.category)
-      return [...new Set(mappedCategories)]
+    maxDistance () {
+      console.log(this.$store.state.maxDistance)
+      return this.$store.state.maxDistance
     },
     companysWithDistance () {
       const companysWithDistance = []

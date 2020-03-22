@@ -1,6 +1,7 @@
 export const state = () => ({
   location: {},
   loading: false,
+  maxDistance: 15000,
   companies: [
     {
       id: 1,
@@ -65,6 +66,9 @@ export const mutations = {
   },
   setLoading (state, payload) {
     state.loading = payload
+  },
+  setMaxDistance (state, payload) {
+    state.maxDistance = payload
   }
 }
 
@@ -74,5 +78,8 @@ export const actions = {
   },
   setLoading ({ commit }, payload) {
     commit('setLoading', payload)
+  },
+  setMaxDistance ({ commit }, payload) {
+    commit('setMaxDistance', payload)
   }
 }
