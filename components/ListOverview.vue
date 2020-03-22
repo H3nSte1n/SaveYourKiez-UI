@@ -7,6 +7,7 @@
       :headline="company.title"
       :category="company.category"
       :distance="company.distance"
+      :link="company.slug"
     />
   </div>
 </template>
