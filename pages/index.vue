@@ -1,44 +1,90 @@
 <template>
-  <v-layout
-    justify-center
-  >
-    <v-flex
-      xs12
-      sm10
-      md8
+  <v-container class="container pa-0" fill-height>
+    <v-layout
+      flex-column
     >
-      <div class="text-center">
-        <div v-if="location.coords">
-          <p>Breitengrad: {{ location.coords.latitude }}</p>
-          <p>Längengrad: {{ location.coords.longitude }}</p>
-        </div>
+      <v-carousel
+        show-arrows
+        hide-delimiter-background
+        hide-delimiters
+        dark
+        height="none"
+        progress
+        progress-color="#1E88E5"
+      >
+        <v-carousel-item
+          v-for="(item,i) in items"
+          :key="i"
+        >
+          <v-img height="300" :src="`${item.logo}`" :alt="item.alt" />
+          <div class="pb-12">
+            <h2 class="ma-4">{{ item.header }}</h2>
+            <blockquote class="text-left ma-4">
+              {{ item.text }}
+            </blockquote>
+          </div>
+        </v-carousel-item>
+      </v-carousel>
+      <div max-width="700" class="mx-auto button">
+        <v-btn
+          exact
+          nuxt
+          depressed
+          outlined
+          color="indigo"
+          large
+          to="/SplitScreen"
+        >
+          Los geht's
+        </v-btn>
       </div>
-      <ListOverview />
-    </v-flex>
-  </v-layout>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-import getPosition from '~/plugins/geolocation'
-import ListOverview from '~/components/ListOverview'
 
 export default {
-  components: {
-    ListOverview
-  },
-  computed: {
-    location () {
-      return this.$store.state.location
-    }
-  },
-  mounted () {
-    if (!this.$store.state.location.coords) { getPosition(this.saveToStore) }
-  },
-  methods: {
-    saveToStore (pos) {
-      this.$store.commit('setLocation', pos)
-      console.log(this.$store.state.location)
+  data () {
+    return {
+      items: [
+        {
+          logo: 'test.jpg',
+          alt: 'test',
+          header: 'First Header',
+          text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
+        },
+        {
+          logo: 'test2.jpg',
+          alt: 'test2',
+          header: 'Second Header',
+          text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
+        },
+        {
+          logo: 'test3.jpg',
+          alt: 'test3',
+          header: 'Third Header',
+          text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
+        }
+      ]
     }
   }
 }
 </script>
+
+<style scoped lang="scss">
+.container {
+  position: relative;
+  max-width: 900px;
+}
+
+.button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.test {
+  color: #1E88E5;
+}
+</style>

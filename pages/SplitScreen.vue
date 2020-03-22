@@ -1,5 +1,5 @@
 <template>
-  <div class="splitPage">
+  <v-flex flex-column fill-height>
     <v-card
       class="d-flex align-start flex-column justify-space-between"
       color="grey lighten-2"
@@ -46,7 +46,7 @@
         Weiter
       </v-btn>
     </v-card>
-  </div>
+  </v-flex>
 </template>
 
 <script>
@@ -56,17 +56,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.splitPage {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-
-  &__block {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 50%;
-    border: solid 1px black;
-  }
-}
 </style>
