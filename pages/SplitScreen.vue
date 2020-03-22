@@ -34,12 +34,12 @@ export default {
             text: 'Local finden'
           },
           img: {
-            alt: 'fuer viertel freunde',
-            src: 'https://picsum.photos/450/500?random="asdas2131sd"'
+            alt: 'Für Viertelfreunde',
+            src: require('~/assets/shoutout-splitscreen-1.jpg')
           }
         },
         {
-          headline: 'Für Viertel-Helden',
+          headline: 'Für Viertelhelden',
           desc: 'Du bist Zapfmeister, Cafébetreiber, Schnittschwester oder Meisterkoch? Lass es dein Viertel wissen. Registrier dein Unternehmen und nutze die Plattform für ein Shoutout – für Unterstützung, für Ideen, für Aufmerksamkeit.',
           btn: {
             to: '/overview',
@@ -47,7 +47,7 @@ export default {
           },
           img: {
             alt: 'fuer viertel freunde',
-            src: 'https://picsum.photos/450/500'
+            src: require('~/assets/shoutout-splitscreen-2.jpg')
           }
         }
       ]

@@ -16,7 +16,7 @@
           v-for="(item,i) in items"
           :key="i"
         >
-          <v-img height="300" :src="`https://picsum.photos/1200/400?random=${item.header}`" :alt="item.alt" />
+          <v-img height="300" :src="item.src" :alt="item.alt" />
           <div class="pb-12">
             <h2 class="ma-4">{{ item.header }}</h2>
             <blockquote class="text-left ma-4">
@@ -49,19 +49,22 @@ export default {
     return {
       items: [
         {
-          alt: 'test',
-          header: 'First Header',
-          text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
+          alt: 'Jetzt ma’ Tacheles',
+          src: require('~/assets/shoutout-slider-1.jpg'),
+          header: 'Jetzt ma’ Tacheles',
+          text: 'Jeder hat Sie, jeder kennt sie, jeder liebt sie – die kleinen Läden, die das Viertel besonders machen. Das Café um’s Eck, die Kneipe nebenan oder der Buchladen ne Straße weiter.'
         },
         {
-          alt: 'test2',
-          header: 'Second Header',
-          text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
+          alt: 'Ohne Moos, nix los',
+          src: require('~/assets/shoutout-slider-2.jpg'),
+          header: 'Ohne Moos, nix los',
+          text: 'Diese Läden sind auf Kundschaft angewiesen und müssen in Krisenzeiten besonders hart kämpfen. Deswegen brauchen sie ein Shoutout, eine Plattform, die ihnen eine Stimme gibt.'
         },
         {
-          alt: 'test3',
-          header: 'Third Header',
-          text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
+          alt: 'Nimm dir ’ne Minute',
+          src: require('~/assets/shoutout-slider-3.jpg'),
+          header: 'Nimm dir ’ne Minute',
+          text: 'Unterstütze was dir lieb ist oder sag ganz offen, was dir am liebsten wäre. Shoutout ist für alle, für Nachbarn und Unternehmer, für Unterstützer und Arbeitgeber. Shoutout ist für dein Viertel.'
         }
       ]
     }
