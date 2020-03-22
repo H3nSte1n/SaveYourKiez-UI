@@ -45,7 +45,7 @@ export default {
   data () {
     return {
       maxDistance: 10000,
-      filterCategories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur']
+      filterCategories: ['coiffeur', 'kiosk', 'cafe', 'bar', 'shop', 'food', 'club']
     }
   },
   computed: {

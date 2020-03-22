@@ -1,28 +1,27 @@
 <template>
-  <div>
-    <h2>{{ companyInfos[currentIndex].name }}</h2>
+  <div class="pa-3">
+    <h2 class="headline mb-3">
+      {{ company.name }}
+    </h2>
     <p>{{ cutDesc }}</p>
-    <v-btn nuxt :to="companyInfos[currentIndex].link">
-      zum Profil
+    <v-btn nuxt :to="`/${company.slug}`">
+      Zum Profil
     </v-btn>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'GeoInfoBox',
   props: {
-    companyInfos: {
-      type: Array,
-      required: false
-    },
-    currentIndex: {
-      type: Number,
-      required: false
+    company: {
+      type: Object,
+      default: () => {}
     }
   },
   computed: {
     cutDesc () {
-      return `${this.companyInfos[this.currentIndex].desc.substring(1, 200)}...`
+      return `${this.company.properties.description.substring(1, 200)}...`
     }
   }
 }

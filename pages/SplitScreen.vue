@@ -16,7 +16,7 @@
         nuxt
         right
         bottom
-        to="/"
+        to="/overview"
         class="ml-auto mr-5 mb-5 pa-6 px-9"
       >
         Weiter

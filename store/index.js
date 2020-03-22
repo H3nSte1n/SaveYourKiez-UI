@@ -70,6 +70,9 @@ export const mutations = {
   },
   setLoading (state, payload) {
     state.loading = payload
+  },
+  setCompanies (state, payload) {
+    state.companies = payload
   }
 }
 
@@ -79,5 +82,8 @@ export const actions = {
   },
   setLoading ({ commit }, payload) {
     commit('setLoading', payload)
+  },
+  setCompanies ({ commit }, payload) {
+    commit('setCompanies', payload)
   }
 }

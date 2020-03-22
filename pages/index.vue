@@ -43,8 +43,8 @@
 </template>
 
 <script>
-
 export default {
+  name: 'Start',
   data () {
     return {
       items: [
@@ -67,6 +67,18 @@ export default {
           text: 'Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein. Hier kommt ein Beispiel Text rein.'
         }
       ]
+    }
+  },
+  mounted () {
+    this.fetchCompanies()
+  },
+  methods: {
+    async fetchCompanies () {
+      try {
+        const companies = await fetch('https://savethekiez.herokuapp.com/api/v1/companies.json')
+        const parsedCompanies = await companies.json()
+        this.$store.dispatch('setCompanies', parsedCompanies)
+      } catch {}
     }
   }
 }

@@ -26,7 +26,7 @@
         :max-distance="maxDistance"
         :filter-categories="filterCategories"
       />
-      <Google-Map v-if="!listView" :locations="features" :company-infos="companyInfos" />
+      <Google-Map v-if="!listView" />
     </v-flex>
     <v-overlay :value="loading">
       <v-progress-circular indeterminate size="64" />

@@ -5,7 +5,7 @@
     </div>
     <gmap-map
       :center="center"
-      :zoom="12"
+      :zoom="14"
       style="width:100%;  height: 100vh;"
       :options="{
         zoomControl: true,
@@ -18,7 +18,7 @@
       }"
     >
       <gmap-info-window :options="infoWindow.infoOptions" :position="infoWindow.infoWindowPosition" :opened="infoWindow.infoWindowOpenStatus" @closeclick="infoWindow.infoWindowOpenStatus=false">
-        <geo-info-box v-if="currentIndex != null" :company-infos="companyInfos" :current-index="currentIndex" />
+        <geo-info-box v-if="activeCompany.id" :company="activeCompany" />
       </gmap-info-window>
       <gmap-marker
         v-for="(marker, index) in markers"
@@ -27,7 +27,7 @@
         :icon="marker.icon"
         :clickable="true"
         :animation="2"
-        @click="toggleInfoWindow(marker,index)"
+        @click="toggleInfoWindow(marker)"
       />
     </gmap-map>
   </div>
@@ -41,24 +41,10 @@ export default {
   components: {
     GeoInfoBox
   },
-  props: {
-    location: {
-      type: Object,
-      default: () => {}
-    },
-    locations: {
-      type: Array,
-      default: () => [] // array with objects
-    },
-    companyInfos: {
-      type: Array,
-      default: () => [] // companyName, companyDesc, img, button
-    }
-  },
   data () {
     return {
+      activeCompany: { id: null },
       places: [],
-      currentPlace: null,
       infoWindow: {
         infoOptions: {
           pixelOffset: {
@@ -69,7 +55,6 @@ export default {
         infoWindowPosition: null,
         infoWindowOpenStatus: false
       },
-      currentIndex: null,
       icons: {
         kiosk: {
           icon: '/food-kategory-icon.png'
@@ -77,7 +62,7 @@ export default {
         bar: {
           icon: '/bar-kategory-icon.png'
         },
-        supermarket: {
+        shop: {
           icon: 'info-i_maps.png'
         },
         bookmarket: {
@@ -87,18 +72,22 @@ export default {
     }
   },
   computed: {
+    companies () {
+      return this.$store.state.companies
+    },
     center () {
       return {
-        lat: this.$store.state.location.coords.latitude,
-        lng: this.$store.state.location.coords.longitude
+        lat: Number(this.$store.state.location.coords.latitude),
+        lng: Number(this.$store.state.location.coords.longitude)
       }
     },
     markers () {
       const markerArray = []
-      this.locations.forEach((e) => {
+      this.companies.forEach((el) => {
         markerArray.push({
-          position: e.position,
-          icon: this.icons[e.type].icon
+          id: el.id,
+          icon: this.icons[el.category] || 'bar-kategory-icon.png',
+          position: { lat: Number(el.latitude), lng: Number(el.longitude) }
         })
       })
       return markerArray
@@ -118,14 +107,14 @@ export default {
         this.center = currentPosition
       }
     },
-    toggleInfoWindow (marker, i) {
+    toggleInfoWindow (marker) {
       this.infoWindow.infoWindowPosition = marker.position
-
-      if (this.currentIndex === i) {
+      if (this.activeCompany.id === marker.id) {
         this.infoWindow.infoWindowOpenStatus = !this.infoWindow.infoWindowOpenStatus
       } else {
         this.infoWindow.infoWindowOpenStatus = true
-        this.currentIndex = i
+        const newActive = this.companies.find(el => el.id === marker.id)
+        this.activeCompany = newActive
       }
     }
   }
