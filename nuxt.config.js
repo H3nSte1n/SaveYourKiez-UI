@@ -15,6 +15,12 @@ export default {
   /*
   ** Headers of the page
   */
+
+  env: {
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+    TESTVAR: 1234
+  },
+
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: 'Shoutout - Rette deine Lieblingsläden',
