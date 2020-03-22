@@ -17,17 +17,17 @@ export default {
   components: {
     ListElement
   },
-  data () {
-    return {
-      // categories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur'],
-      filterCategories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur']
+  props: {
+    maxDistance: {
+      type: Number,
+      required: true
+    },
+    filterCategories: {
+      type: Array,
+      required: true
     }
   },
   computed: {
-    maxDistance () {
-      console.log(this.$store.state.maxDistance)
-      return this.$store.state.maxDistance
-    },
     companysWithDistance () {
       const companysWithDistance = []
       this.$store.state.companies.forEach((el) => {

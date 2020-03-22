@@ -42,6 +42,10 @@ export default {
     GeoInfoBox
   },
   props: {
+    location: {
+      type: Object,
+      default: () => {}
+    },
     locations: {
       type: Array,
       default: () => [] // array with objects
@@ -53,9 +57,6 @@ export default {
   },
   data () {
     return {
-      // default to Montreal to keep it simple
-      // change this to whatever makes sense
-      center: { lat: -33.91747, lng: 151.22912 },
       places: [],
       currentPlace: null,
       infoWindow: {
@@ -86,8 +87,11 @@ export default {
     }
   },
   computed: {
-    location () {
-      return this.$store.state.location
+    center () {
+      return {
+        lat: this.$store.state.location.coords.latitude,
+        lng: this.$store.state.location.coords.longitude
+      }
     },
     markers () {
       const markerArray = []
@@ -99,10 +103,6 @@ export default {
       })
       return markerArray
     }
-  },
-  mounted () {
-    console.log(this.location)
-    this.geolocate()
   },
   methods: {
     setPlace (place) {
@@ -116,17 +116,6 @@ export default {
           lng: this.currentPlace.geometry.location.lng()
         }
         this.center = currentPosition
-      }
-    },
-    geolocate () {
-      console.log('locationMap', this.location)
-      if (this.$store.state.location.coords) {
-        this.center = {
-          lat: location.coords.latitude,
-          lng: location.coords.longitude
-        }
-      } else {
-
       }
     },
     toggleInfoWindow (marker, i) {

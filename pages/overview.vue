@@ -13,9 +13,20 @@
           <p>Längengrad: {{ location.coords.longitude }}</p>
         </div>
       </div>
-      <Filter-Companies />
-      <ListOverview v-if="viewToggle" />
-      <Google-Map v-if="!viewToggle" />
+      <Filter-Companies
+        @location="useLocation"
+        @max-distance="setMaxDistance"
+        @filter-categories="setFilterCategories"
+      />
+      <v-switch v-model="listView">
+        Toogle View
+      </v-switch>
+      <ListOverview
+        v-if="listView"
+        :max-distance="maxDistance"
+        :filter-categories="filterCategories"
+      />
+      <Google-Map v-if="!listView" />
     </v-flex>
     <v-overlay :value="loading">
       <v-progress-circular indeterminate size="64" />
@@ -37,7 +48,9 @@ export default {
   },
   data () {
     return {
-      viewToggle: true
+      maxDistance: 0,
+      listView: true,
+      filterCategories: []
     }
   },
   computed: {
@@ -48,13 +61,17 @@ export default {
       return this.$store.state.loading
     }
   },
-  mounted () {
-    if (!this.$store.state.location.coords) {
+  methods: {
+    setMaxDistance (payload) {
+      this.maxDistance = payload
+    },
+    setFilterCategories (payload) {
+      this.filterCategories = payload
+    },
+    useLocation () {
       this.$store.dispatch('setLoading', true)
       getPosition(this.saveToStore)
-    }
-  },
-  methods: {
+    },
     saveToStore (pos) {
       this.$store.dispatch('setLocation', pos)
       this.$store.dispatch('setLoading', false)
