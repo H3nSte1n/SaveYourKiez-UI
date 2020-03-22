@@ -1,9 +1,10 @@
 <template>
   <div>
-    <gmap-autocomplete @place_changed="setPlace" class="locationSelection">
+    <gmap-autocomplete class="locationSelection" @place_changed="setPlace">
       <template v-slot:input="slotProps">
         <v-text-field
           ref="input"
+          primary
           outlined
           prepend-inner-icon="place"
           placeholder="Location Of Event"
@@ -12,6 +13,9 @@
         />
       </template>
     </gmap-autocomplete>
+    <v-btn @click="useLocation">
+      Standort erkennen
+    </v-btn>
     <v-slider
       v-model="maxDistance"
       min="0"
@@ -40,19 +44,8 @@
 export default {
   data () {
     return {
-      maxDistance: null,
-      // categories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur'],
+      maxDistance: 10000,
       filterCategories: ['Bar', 'Food', 'Café', 'Kiosk', 'Friseur']
-    }
-  },
-  mounted () {
-    this.maxDistance = this.$store.state.maxDistance
-  },
-  watch: {
-    maxDistance () {
-      this.$store.dispatch('setMaxDistance', this.maxDistance)
-      console.log(this.$store.state.maxDistance)
-      this.$store.dispatch('setLoading', false)
     }
   },
   computed: {
@@ -61,7 +54,22 @@ export default {
       return [...new Set(mappedCategories)]
     }
   },
+  watch: {
+    maxDistance () {
+      this.$emit('max-distance', this.maxDistance)
+    },
+    filterCategories () {
+      this.$emit('filter-categories', this.filterCategories)
+    }
+  },
+  mounted () {
+    this.$emit('max-distance', this.maxDistance)
+    this.$emit('filter-categories', this.filterCategories)
+  },
   methods: {
+    useLocation () {
+      this.$emit('location')
+    },
     setPlace (place) {
       const currentPlace = {
         coords: {

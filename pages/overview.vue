@@ -13,9 +13,20 @@
           <p>Längengrad: {{ location.coords.longitude }}</p>
         </div>
       </div>
-      <Filter-Companies />
-      <ListOverview v-if="viewToggle" />
-      <Google-Map v-if="!viewToggle" :locations="features" :company-infos="companyInfos" />
+      <Filter-Companies
+        @location="useLocation"
+        @max-distance="setMaxDistance"
+        @filter-categories="setFilterCategories"
+      />
+      <v-switch v-model="listView">
+        Toogle View
+      </v-switch>
+      <ListOverview
+        v-if="listView"
+        :max-distance="maxDistance"
+        :filter-categories="filterCategories"
+      />
+      <Google-Map v-if="!listView" :locations="features" :company-infos="companyInfos" />
     </v-flex>
     <v-overlay :value="loading">
       <v-progress-circular indeterminate size="64" />
@@ -37,28 +48,9 @@ export default {
   },
   data () {
     return {
-      viewToggle: true,
-      features: [
-        {
-          position: { lat: -33.91721, lng: 151.22630 },
-          type: 'kiosk'
-        }, {
-          position: { lat: -33.91539, lng: 151.22820 },
-          type: 'kiosk'
-        }
-      ],
-      companyInfos: [
-        {
-          name: 'Name',
-          desc: 'asdjajksdnjk ankjdn ajksldklasjn djkasn jkdans kjdn kajsn dklasn dklnas kldna kslnd klasn kldnas klnd klasn dklnsa kldnska lnd klasn dklanskl dnklas ndkln skl',
-          link: '/'
-        },
-        {
-          name: 'Name 123123',
-          desc: 'asdjajksdnjk ankjdn ajksldklasjn djkasn jkdans kjdn kajsn dklasn dklnas kldna kslnd klasn kldnas klnd klasn dklnsa kldnska lnd klasn dklanskl dnklas ndkln skl',
-          link: '/'
-        }
-      ]
+      maxDistance: 0,
+      listView: true,
+      filterCategories: []
     }
   },
   computed: {
@@ -69,13 +61,17 @@ export default {
       return this.$store.state.loading
     }
   },
-  mounted () {
-    if (!this.$store.state.location.coords) {
+  methods: {
+    setMaxDistance (payload) {
+      this.maxDistance = payload
+    },
+    setFilterCategories (payload) {
+      this.filterCategories = payload
+    },
+    useLocation () {
       this.$store.dispatch('setLoading', true)
       getPosition(this.saveToStore)
-    }
-  },
-  methods: {
+    },
     saveToStore (pos) {
       this.$store.dispatch('setLocation', pos)
       this.$store.dispatch('setLoading', false)
