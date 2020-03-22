@@ -119,6 +119,7 @@ export default {
       }
     },
     geolocate () {
+      console.log('locationMap', this.location)
       if (this.$store.state.location.coords) {
         this.center = {
           lat: location.coords.latitude,
@@ -129,7 +130,6 @@ export default {
       }
     },
     toggleInfoWindow (marker, i) {
-      console.log('test')
       this.infoWindow.infoWindowPosition = marker.position
 
       if (this.currentIndex === i) {
@@ -138,7 +138,6 @@ export default {
         this.infoWindow.infoWindowOpenStatus = true
         this.currentIndex = i
       }
-      console.log(this.currentIndex)
     }
   }
 }
