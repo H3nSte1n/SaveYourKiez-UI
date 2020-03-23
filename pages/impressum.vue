@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="space-between">
-      <v-col cols="12" md="8">
+      <v-col cols="12" md="8" push-md="2">
         <h1 class="mb-6">Impressum</h1>
         <h2 class="mb-5 mt-5">Angaben gemäß § 5 TMG</h2>
         <p class="mb-3">Dominik Criado Rankestraße 10 50935 Köln</p>
