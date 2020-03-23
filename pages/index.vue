@@ -1,44 +1,48 @@
 <template>
-  <v-container class="container pa-0" fill-height>
-    <v-layout
-      flex-column
-    >
-      <v-carousel
-        show-arrows
-        hide-delimiter-background
-        hide-delimiters
-        dark
-        height="none"
-        progress
-        progress-color="#1E88E5"
-      >
-        <v-carousel-item
-          v-for="(item, i) in items"
-          :key="i"
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="12">
+        <v-carousel
+          show-arrows
+          hide-delimiter-background
+          hide-delimiters
+          dark
+          height="none"
+          progress
+          progress-color="#1E88E5"
         >
-          <v-img height="300" :src="item.src" :alt="item.alt" />
-          <div class="pb-12">
-            <h2 class="ma-4">{{ item.header }}</h2>
-            <blockquote class="text-left ma-4">
-              {{ item.text }}
-            </blockquote>
-          </div>
-        </v-carousel-item>
-      </v-carousel>
-      <div max-width="700" class="mx-auto button">
-        <v-btn
-          exact
-          nuxt
-          depressed
-          outlined
-          color="black"
-          large
-          to="/splitscreen"
-        >
-          Los geht's
-        </v-btn>
-      </div>
-    </v-layout>
+          <v-carousel-item
+            v-for="(item, i) in items"
+            :key="i"
+          >
+            <v-img height="300" :src="item.src" :alt="item.alt" />
+            <div class="pb-12">
+              <h2 class="ma-4">
+                {{ item.header }}
+              </h2>
+              <blockquote class="text-left ma-4">
+                {{ item.text }}
+              </blockquote>
+            </div>
+          </v-carousel-item>
+        </v-carousel>
+      </v-col>
+      <v-col cols="12" class="text-right">
+        <div class="button">
+          <v-btn
+            exact
+            nuxt
+            depressed
+            outlined
+            color="indigo"
+            large
+            to="/splitscreen"
+          >
+            Los geht's
+          </v-btn>
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -83,20 +87,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.container {
-  position: relative;
-  max-width: 900px;
-}
-
-.button {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-}
-
-.test {
-  color: #1E88E5;
-}
-</style>
