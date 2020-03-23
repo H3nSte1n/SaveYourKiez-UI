@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col cols="12">
-          <nuxt-link to="/overview">
+          <nuxt-link to="/">
             <img src="~/assets/logo.png" alt="Shoutout!" class="ly-logo">
           </nuxt-link>
         </v-col>
@@ -13,10 +13,12 @@
     <v-container>
       <v-row>
         <v-col cols="12" class="text-right">
-          <v-btn depressed class="button" nuxt to="/impressum">
+          <v-btn text class="button" nuxt to="/impressum">
             Impressum
           </v-btn>
-        <!--<nuxt-link to="/overview">Datenschutz</nuxt-link> -->
+          <v-btn text class="button" nuxt to="/datenschutz">
+            Datenschutz
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
