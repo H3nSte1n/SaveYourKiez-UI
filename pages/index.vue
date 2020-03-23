@@ -15,7 +15,7 @@
             v-for="(item, i) in items"
             :key="i"
           >
-            <v-img height="300" :src="item.src" :alt="item.alt" />
+            <v-img :src="item.src" :alt="item.alt" />
             <div class="pb-12">
               <h2 class="ma-4">
                 {{ item.header }}
