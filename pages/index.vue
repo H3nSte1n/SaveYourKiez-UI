@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="12" md="7" lg="6" push-md="1" push-lg="2">
+      <v-col cols="12" md="8" lg="6">
         <h1 class="display-2 mb-3 font-weight-thin">
           shoutout.
           <span class="kritzel-wrapper">
@@ -24,7 +24,7 @@
         <p class="mb-10">Dann lasst uns eure E-Mail Adresse da und wir schicken euch eine Benachrichtigung, sobald wir live sind.</p>
         <!-- Begin Mailchimp Signup Form -->
       </v-col>
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="4" lg="4" justify-self="right">
         <div class="video-container">
           <iframe
             src="https://www.youtube-nocookie.com/embed/WgSPyhn-6Gg?rel=0"
@@ -34,7 +34,9 @@
           />
         </div>
       </v-col>
-      <v-col cols="12" md="11" lg="10" push-md="1">
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" lg="10">
         <div id="mc_embed_signup">
           <form
             id="mc-embedded-subscribe-form"
@@ -102,7 +104,9 @@
    }
  }
  .kritzel-wrapper {
+   display: inline-block;
    position: relative;
+   overflow: visible;
  }
 
  .kritzel {

@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="space-between">
       <v-col cols="12" md="8" push-md="2">
-        <h1 class="mb-6">Impressum</h1>
+        <h1 class="mb-6">Datenschutz</h1>
         <p class="mb-3">
           Nach Inkrafttreten der DSGVO und bis zum Inkrafttreten der ePrivacy Verordnung ist im Moment leider
           nicht geklärt, wie Websitebetreiber Cookies 100% rechtskonform einsetzen können. Vor allem zu Cookies,
